@@ -11,6 +11,10 @@
 
         <Button x:Name="paivitys_nappi" Text="Päivitä listaus" Clicked="paivitys_nappi_Clicked" />
 
+        <!-- Hakukenttä -->
+        <SearchBar Placeholder="Hae etu- tai sukunimellä"
+                   TextChanged="OnSearchBarTextChanged" />
+
         <Label x:Name="emp_lataus" />
 
         <ListView x:Name="employeeList" SelectionMode="Single" Margin="20, 0">
@@ -19,28 +23,32 @@
                     <ViewCell>
 
                         <ContentView Padding="3">
-                            <Frame BorderColor="Silver" Padding="3">
+                            <Frame BorderColor="Silver" Padding="2">
 
                                 <StackLayout BackgroundColor="AliceBlue" Orientation="Horizontal" Padding="0, 2">
 
                                     <Image Source="{Binding ImageLink}"
-                                     HorizontalOptions="Start"
+                                     
                                       WidthRequest="40"
                                       HeightRequest="40"
-                                         VerticalOptions="StartAndExpand" />
+                                         VerticalOptions="StartAndExpand"
+                                            Margin="0, 0, 0, 0"/>
 
                                     <Label Text="{Binding FirstName}"
-                                              HorizontalOptions="Center"
+                                              
                                                TextColor="Purple"
                                                FontSize="22"
-                                               VerticalOptions="StartAndExpand" />
+                                               VerticalOptions="StartAndExpand" 
+                                           Margin="20, 0, 0, 0"/>
 
 
                                     <Label Text="{Binding LastName}"
-                                        HorizontalOptions="Start"
+                                        
                                          TextColor="Purple"
                                            FontSize="22"
-                                           VerticalOptions="StartAndExpand" />
+                                           VerticalOptions="StartAndExpand"
+                                            HorizontalOptions="Center"
+                                             Margin="5, 0, 0, 0"/>
 
                                 </StackLayout>
                             </Frame>
@@ -50,6 +58,8 @@
             </ListView.ItemTemplate>
         </ListView>
 
+        <!-- Nappi joka johtaa työtehtäviin -->
+        <Button x:Name="navibutton" Text="Työtehtäviin" Clicked="navibutton_Clicked"></Button>
 
     </StackLayout>
 

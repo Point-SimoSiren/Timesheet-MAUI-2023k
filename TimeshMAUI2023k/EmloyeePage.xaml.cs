@@ -34,18 +34,7 @@ public partial class EmployeePage : ContentPage
             try
             {
 
-                HttpClientHandler GetInsecureHandler()
-                {
-                    HttpClientHandler handler = new HttpClientHandler();
-                    handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) =>
-                    {
-                        if (cert.Issuer.Equals("CN=localhost"))
-                            return true;
-                        return errors == System.Net.Security.SslPolicyErrors.None;
-                    };
-                    return handler;
-                }
-
+               
 #if DEBUG
                 HttpsClientHandlerService handler = new HttpsClientHandlerService();
                 HttpClient client = new HttpClient(handler.GetPlatformMessageHandler());
@@ -82,5 +71,40 @@ public partial class EmployeePage : ContentPage
     {
         LoadDataFromRestAPI();
     }
+
+
+    // Hakutoiminto
+    private void OnSearchBarTextChanged(object sender, EventArgs args)
+    {
+       // SearchBar searchBar = (SearchBar)sender; alla sama asia eri syntksilla
+        SearchBar searchBar = sender as SearchBar;
+
+        string searchText = searchBar.Text;
+
+        // Työntekijälistaukseen valitaan nyt vain ne joiden etu- tai sukunimeen sisältyy annettu hakutermi
+        // "var dataa" on tiedoston päätasolla alustettu muuttuja, johon sijoitettiin alussa koko lista työntekijöistä.
+        // Nyt siihen sijoitetaan vain hakuehdon täyttävät työntekijät
+        employeeList.ItemsSource = dataa.Where(x => x.LastName.ToLower().Contains(searchText.ToLower())
+        || x.FirstName.ToLower().Contains(searchText.ToLower()));
+
+    }
+
+    async void navibutton_Clicked(object sender, EventArgs e)
+    {
+        Employee emp = (Employee)employeeList.SelectedItem;
+
+        if (emp == null)
+        {
+            await DisplayAlert("Valinta puuttuu", "Valitse työntekijä.", "OK"); // (otsikko, teksti, kuittausnapin teksti)
+            //return;
+        }
+        else
+        {
+
+            int id = emp.IdEmployee;
+            await Navigation.PushAsync(new WorkAssignmentPage(id)); // Navigoidaan uudelle sivulle
+        }
+    }
 }
+
 
