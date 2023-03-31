@@ -12,9 +12,9 @@ public partial class EmployeePage : ContentPage
 #if DEBUG
     private static readonly string Base = "http://10.0.2.2";
     private static readonly string ApiBaseUrl = $"{Base}:5126/";
+
 #else
-    private static readonly string Base = "https://YOUR_APP_SERVICE.azurewebsites.net";
-    private static readonly string ApiBaseUrl = "$"{Base}:5001/";
+    private static readonly string ApiBaseUrl = "https://YOUR_APP_SERVICE.azurewebsites.net";
 #endif
 
     public EmployeePage()
@@ -33,7 +33,6 @@ public partial class EmployeePage : ContentPage
         {
             try
             {
-
                
 #if DEBUG
                 HttpsClientHandlerService handler = new HttpsClientHandlerService();
@@ -48,7 +47,6 @@ public partial class EmployeePage : ContentPage
                 IEnumerable<Employee> employees = JsonConvert.DeserializeObject<Employee[]>(json);
                 // dataa -niminen observableCollection on alustettukin jo ylhäällä päätasolla että hakutoiminto,
                 // pääsee siihen käsiksi.
-                // asetetaan sen sisältö ensi kerran tässä pienellä kepulikonstilla:
                dataa = new ObservableCollection<Employee>(employees);
             
                 // Asetetaan datat näkyviin xaml tiedostossa olevalle listalle

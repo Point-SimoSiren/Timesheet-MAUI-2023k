@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TimeshMAUI2023k.Models
 {
-    internal class Operation
+    public class Operation
     {
         public int EmployeeID { get; set; }
         public int CustomerID { get; set; }

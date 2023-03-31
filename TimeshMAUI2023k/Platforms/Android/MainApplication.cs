@@ -9,6 +9,7 @@ namespace TimeshMAUI2023k;
 #else
 [Application]
 #endif
+
 public class MainApplication : MauiApplication
 {
 	public MainApplication(IntPtr handle, JniHandleOwnership ownership)

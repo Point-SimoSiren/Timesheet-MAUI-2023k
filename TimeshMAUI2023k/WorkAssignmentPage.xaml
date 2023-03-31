@@ -31,7 +31,7 @@
 
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0, 40, 0, 30">
             <Button x:Name="startbutton" Text="Aloita työ" Clicked="startbutton_Clicked"></Button>
-            <Button x:Name="stopbutton" Margin="10, 0, 0, 0" Text="Lopeta työ" Clicked="stopbutton_Clicked"></Button>
+            <Button x:Name="stopbutton" Margin="10, 0, 0, 0" Clicked="stopbutton_Clicked" Text="Lopeta työ"></Button>
         </StackLayout>
 
     </StackLayout>
